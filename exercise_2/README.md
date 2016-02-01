@@ -1,12 +1,12 @@
-# Pros & cons for using a single page web app
+# Pros & cons for the usage of Javascript libraries/frameworks
 
 ## Pros
-* Dynamic & fast. Not waiting for slow page refresh
-* More responsive experience (eg. inline editting)
-* Smarter experience (eg. search suggestions)
+* Don't reinvent the wheel
+* High code quality, often tested & maintained by experienced developers
+* Less development time
+* Opinionated, best practices.
 
-## Cons 
-* SEO, when everything is Javascript a crawler sees nothing. (Used to be, isomorphic is piece of cake now)
-* Overkill for a really simple websites.
-* Progressive enhancement, it's a lot of work to build a SPA that works for browser without/disabled Javascript.
-
+## Cons
+* Performance overhead
+* Black box, no idea what's going on.
+* Swiss knife, only need one part of a (big) framework
