@@ -1,0 +1,17 @@
+{
+  "name": "exercise_4",
+  "version": "1.0.0",
+  "description": "Refactor lineair code to structured code",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert van Steen",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^4.1.7",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^4.0.0",
+    "eslint-plugin-react": "^3.16.1"
+  }
+}
