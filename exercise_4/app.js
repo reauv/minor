@@ -31,11 +31,6 @@ import EventTarget from './lib/eventTarget';
 	let currentPosition = false;
 	let currentPositionMarker = false;
 
-	// let updateMap = false;
-	// let locationRow = [];
-	// let interval = false;
-	//
-
 	function debugMessage(message) {
 		return (customDebugging && debugId)
 			? document.getElementById(debugId).innerHTML
