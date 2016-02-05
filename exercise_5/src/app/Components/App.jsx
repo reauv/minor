@@ -4,8 +4,10 @@ import { routeActions } from 'react-router-redux';
 
 const App = ({ dispatch, children }) =>
 	<div>
-		<h1>App</h1>
-		<ul>
+		<ul className="nav">
+			<li onClick={() => dispatch(routeActions.push('/')) }>
+				Home
+			</li>
 			<li onClick={() => dispatch(routeActions.push('/foo')) }>
 				Foo
 			</li>
@@ -13,7 +15,9 @@ const App = ({ dispatch, children }) =>
 				Bar
 			</li>
 		</ul>
-		{children}
+		<div className="page">
+			{children}
+		</div>
 	</div>;
 
 export default connect()(App);
