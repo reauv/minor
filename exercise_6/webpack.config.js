@@ -26,6 +26,9 @@ module.exports = {
 		root: `${PATH}/src/app`,
 		extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
 		fallback: path.join(__dirname, 'node_modules'),
+		alias: {
+			env: '../env'
+		}
 	},
 
 	plugins: [

@@ -1,4 +1,5 @@
 // Load deps
+import env from 'env';
 import store from 'Store';
 import React from 'react';
 import ReactDOM from 'react-dom';
