@@ -1,37 +1,15 @@
 // Load deps
+import store from 'Store';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reducer from 'Reducers';
-import thunk from 'redux-thunk';
 import Soundcloud from 'soundcloud';
-import { assignAll } from 'redux-act';
 import { Provider } from 'react-redux';
 import { syncHistory } from 'react-router-redux';
 import * as SoundcloudActions from 'Actions/SoundcloudActions';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import App from 'Components/App';
-import Tracks from 'Components/Tracks';
-
-// Set up router middleware
-const reduxRouterMiddleware = syncHistory(browserHistory);
-
-// Set up store
-const store = createStore(
-	reducer,
-	{},
-	compose(
-		applyMiddleware(reduxRouterMiddleware, thunk),
-		window.devToolsExtension ? window.devToolsExtension() : f => f
-	)
-);
-
-// Bind actions to the store
-assignAll(SoundcloudActions, store);
-
-// Required for replaying actions from devtools to work
-reduxRouterMiddleware.listenForReplays(store);
+import App from 'Containers/App';
+import Tracks from 'Containers/Tracks';
 
 // Set up Soundcloud
 Soundcloud.initialize({

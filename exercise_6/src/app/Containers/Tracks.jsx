@@ -1,7 +1,8 @@
+import Track from 'Components/Track';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
-import { fetchTracks } from 'Actions/SoundcloudActions';
+import { fetchTracks, streamTrack } from 'Sources/SoundcloudSource';
 
 class Tracks extends Component {
 
@@ -25,6 +26,10 @@ class Tracks extends Component {
 		fetchTracks();
 	}
 
+	onTrackClick(track) {
+		streamTrack(track.id);
+	}
+
 	/**
 	 * Render the component.
 	 *
@@ -35,6 +40,15 @@ class Tracks extends Component {
 			<div>
 				<h2>Tracks</h2>
 				<p>{this.props.status}</p>
+
+				{this.props.tracks.map(track =>
+					<Track
+						track={track}
+						key={track.id}
+						onClick={this.onTrackClick.bind(this, track)}
+					/>
+				)}
+
 			</div>
 		);
 	}
