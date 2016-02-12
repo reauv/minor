@@ -24,7 +24,7 @@ module.exports = {
 	// Instructions to how resolve the modules
 	resolve: {
 		root: `${PATH}/src/app`,
-		extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
+		extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', '.css'],
 		fallback: path.join(__dirname, 'node_modules'),
 		alias: {
 			env: '../env'
@@ -49,7 +49,11 @@ module.exports = {
 				query: {
 					name: '[name].[ext]',
 				},
-			}
+			},
+			{
+				test: /\.css$/,
+				loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+			},
 		],
 	}
 };

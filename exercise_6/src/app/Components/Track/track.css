@@ -1,0 +1,46 @@
+.container {
+	margin-bottom: 2em;
+	display: flex;
+	padding: 0 0 1em 0;
+	border-bottom: 1px solid #EEE;
+}
+
+.cover {
+	width: 100px;
+	margin-right: 1em;
+}
+
+.user {
+	font-size: 0.75em;
+	text-tranform: uppercase;
+	margin-bottom: 0.4em;
+}
+
+.meta {
+	display: flex;
+}
+
+.title {
+	font-size: 1.15em;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.play {
+	flex: 0 0 2em;
+	height: 2em;
+	background: #F50;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	cursor: pointer;
+	margin-right: 1em;
+}
+
+.play i {
+	position: relative;
+	top: 1px;
+	left: 1px;
+}

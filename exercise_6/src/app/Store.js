@@ -4,6 +4,7 @@ import { assignAll } from 'redux-act';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import * as userActions from 'Actions/UserActions';
 import * as soundcloudActions from 'Actions/SoundcloudActions';
 
 // Set up router middleware
@@ -24,5 +25,6 @@ reduxRouterMiddleware.listenForReplays(store);
 
 // Assign functions to the store
 assignAll(soundcloudActions, store);
+assignAll(userActions, store);
 
 export default store;

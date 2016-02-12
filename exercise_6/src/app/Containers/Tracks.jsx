@@ -1,4 +1,4 @@
-import Track from 'Components/Track';
+import Feed from 'Components/Feed';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
@@ -22,9 +22,7 @@ class Tracks extends Component {
 	 *
 	 * @return {void}
 	 */
-	componentWillMount() {
-		fetchTracks();
-	}
+	componentWillMount() {}
 
 	onTrackClick(track) {
 		streamTrack(track.id);
@@ -40,15 +38,11 @@ class Tracks extends Component {
 			<div>
 				<h2>Tracks</h2>
 				<p>{this.props.status}</p>
-
-				{this.props.tracks.map(track =>
-					<Track
-						track={track}
-						key={track.id}
-						onClick={this.onTrackClick.bind(this, track)}
-					/>
-				)}
-
+				<Feed
+					playing={this.props.playing}
+					collection={this.props.tracks}
+					currentTrack={this.props.currentTrack}
+				/>
 			</div>
 		);
 	}
@@ -56,8 +50,10 @@ class Tracks extends Component {
 
 function select(state) {
 	return {
-		status: state.soundcloud.fetchingTracks,
 		tracks: state.soundcloud.tracks,
+		playing: state.soundcloud.playing,
+		status: state.soundcloud.fetchingTracks,
+		currentTrack: state.soundcloud.currentTrack,
 	}
 }
 

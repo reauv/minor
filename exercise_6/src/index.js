@@ -11,10 +11,12 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from 'Containers/App';
 import Tracks from 'Containers/Tracks';
+import TrackDetail from 'Containers/TrackDetail';
 
 // Set up Soundcloud
 Soundcloud.initialize({
-	client_id: '2ffdaf326d7cea79aad3eb25b3c80ca8',
+	client_id: env.SOUNDCLOUD_ID,
+	redirect_uri: 'http://0.0.0.0:8080/callback.html',
 });
 
 // Render the application
@@ -23,6 +25,7 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<IndexRoute component={Tracks}/>
+				<Route path='/track/:id' component={TrackDetail} />
 			</Route>
 		</Router>
 	</Provider>,
