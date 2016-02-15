@@ -8,7 +8,7 @@ module.exports = {
 
 	// Entry
 	entry: {
-		scripts: ['webpack/hot/dev-server', './src/main.js'],
+		scripts: './src/main.js',
 		html: './src/public/index.html',
 	},
 
@@ -47,15 +47,5 @@ module.exports = {
 				},
 			},
 		],
-	},
-
-	devServer: {
-		contentBase: `${PATH}/src`,
-		host: '0.0.0.0',
-		port: 8080,
-		historyApiFallback: true,
-		https: false,
-		inline: true,
-		hot: true,
 	},
 };
