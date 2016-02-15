@@ -14,6 +14,11 @@ a:active {
 	text-decoration: inherit;
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 :global(.wrapper) {
 	padding: 1em;
 }

@@ -44,6 +44,7 @@ class TrackDetail extends Component {
 				track={this.props.track}
 				player={this.props.player}
 				playing={this.props.playing}
+				position={this.props.position}
 				currentTrack={this.props.currentTrack}
 			/>
 		);
@@ -53,8 +54,9 @@ class TrackDetail extends Component {
 function select(state) {
 	return {
 		track: state.soundcloud.track,
-		playing: state.soundcloud.playing,
-		currentTrack: state.soundcloud.currentTrack,
+		playing: state.player.playing,
+		position: state.player.position,
+		currentTrack: state.player.currentTrack,
 		fetchingTrack: state.soundcloud.fetchingTrack,
 	}
 }
