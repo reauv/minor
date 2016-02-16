@@ -3,7 +3,7 @@ import Track from 'Components/Track/Track';
 import React, { Component, PropTypes } from 'react';
 import { fetchTrack } from 'Sources/SoundcloudSource';
 
-class TrackDetail extends Component {
+class TrackDetailContainer extends Component {
 
 	/**
 	 * Validates the props used by the component.
@@ -14,7 +14,7 @@ class TrackDetail extends Component {
 		playing: PropTypes.bool,
 		track: PropTypes.object,
 		params: PropTypes.object,
-		currentTrack: PropTypes.number,
+		currentTrack: PropTypes.object,
 		fetchingTrack: PropTypes.string,
 	};
 
@@ -40,13 +40,7 @@ class TrackDetail extends Component {
 		}
 
 		return (
-			<Track
-				track={this.props.track}
-				player={this.props.player}
-				playing={this.props.playing}
-				position={this.props.position}
-				currentTrack={this.props.currentTrack}
-			/>
+			<Track {...this.props} />
 		);
 	}
 }
@@ -56,9 +50,10 @@ function select(state) {
 		track: state.soundcloud.track,
 		playing: state.player.playing,
 		position: state.player.position,
+		duration: state.player.duration,
 		currentTrack: state.player.currentTrack,
 		fetchingTrack: state.soundcloud.fetchingTrack,
 	}
 }
 
-export default connect(select)(TrackDetail);
+export default connect(select)(TrackDetailContainer);

@@ -2,20 +2,19 @@ import 'Stylesheets/reset';
 import 'Stylesheets/shared';
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { routeActions } from 'react-router-redux';
-
 import Auth from 'Components/Auth';
 import Header from 'Components/Header/Header';
+import PlayerContainer from 'Containers/PlayerContainer';
 
-const Tracks = ({ children }) =>
+const App = ({ children }) =>
 	<div>
 		<Header />
 		<Auth />
 		<div className="wrapper">
 			{children}
 		</div>
+		<PlayerContainer />
 	</div>;
 
-export default connect()(Tracks);
+export default App;
 

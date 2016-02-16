@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Soundcloud from 'soundcloud';
 import * as playerActions from 'Actions/PlayerActions';
 import * as soundcloudActions from 'Actions/SoundcloudActions';
@@ -15,7 +16,7 @@ export function fetchTrack(id) {
 
 	return Soundcloud.get(`/tracks/${id}`)
 		.then(response => soundcloudActions.fetchedTrack(response))
-		.catch(error => console.error(error));
+		.catch(error => _.defer(() => { throw error }));
 }
 
 export function streamTrack(track, streamOptions) {

@@ -1,8 +1,10 @@
+import env from 'env';
 import { createReducer } from 'redux-act';
 import * as actions from 'Actions/SoundcloudActions';
 import { streamTrack } from 'Sources/SoundcloudSource';
 
 const initialState = {
+	key: env.SOUNDCLOUD_ID,
 	tracks: [],
 	track: null,
 	fetchingTrack: 'idle',

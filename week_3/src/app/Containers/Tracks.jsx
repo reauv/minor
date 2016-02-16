@@ -24,10 +24,6 @@ class Tracks extends Component {
 	 */
 	componentWillMount() {}
 
-	onTrackClick(track) {
-		streamTrack(track.id);
-	}
-
 	/**
 	 * Render the component.
 	 *
@@ -51,9 +47,9 @@ class Tracks extends Component {
 function select(state) {
 	return {
 		tracks: state.soundcloud.tracks,
-		playing: state.soundcloud.playing,
+		playing: state.player.playing,
+		currentTrack: state.player.currentTrack,
 		status: state.soundcloud.fetchingTracks,
-		currentTrack: state.soundcloud.currentTrack,
 	}
 }
 

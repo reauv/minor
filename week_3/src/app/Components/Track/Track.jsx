@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import style from './track.css';
 import Waveform from 'waveform.js';
 import { Link } from 'react-router';
@@ -14,10 +15,22 @@ class Track extends Component {
 	 */
 	static propTypes = {
 		position: PropTypes.number,
-		currentTrack: PropTypes.number,
+		duration: PropTypes.number,
+		currentTrack: PropTypes.object,
 		playing: PropTypes.bool.isRequired,
 		track: PropTypes.object.isRequired,
 	};
+
+	/**
+	 * Throttle the waveform redraw.
+
+	 * Because the waveform redraw method will only be available after the
+	 * waveform is set this is just an initial empty function until there is
+	 * something to throttle.
+	 *
+	 * @type {Function}
+	 */
+	redrawWaveform = () => {};
 
 	/**
 	 * Invoked once, only on the client (not on the server), immediately
@@ -29,10 +42,33 @@ class Track extends Component {
 		this.waveform = new Waveform({
 			container: this.refs.waveform,
 			outerColor: '#FFF',
-			innerColor: '#BBB',
+			innerColor: (x) => {
+				if (x < this.props.position / this.props.duration) {
+					return '#f50';
+				}
+
+				return '#BBB';
+			},
 		});
 
 		this.waveform.dataFromSoundCloudTrack(this.props.track);
+		this.redrawWaveform = _.throttle(this.waveform.redraw, 100);
+	}
+
+	/**
+	 * Invoked when a component is receiving new props.
+	 * This method is not called for the initial render.
+	 *
+	 * @param  {Object} nextProps
+	 * @return {void}
+	 */
+	componentWillReceiveProps(nextProps) {
+		const positionChanged = nextProps.position !== this.props.position;
+		const durationChanged = nextProps.duration !== this.props.duration;
+
+		if (positionChanged || durationChanged) {
+			this.redrawWaveform();
+		}
 	}
 
 	/**
@@ -41,7 +77,7 @@ class Track extends Component {
 	 * @return {Boolean}
 	 */
 	isPlaying() {
-		return this.props.playing && this.props.currentTrack === this.props.track.id;
+		return this.props.playing && this.props.currentTrack.id === this.props.track.id;
 	}
 
 	/**
@@ -50,16 +86,14 @@ class Track extends Component {
 	 * @return {void}
 	 */
 	onPlayClick() {
-		if (this.props.currentTrack !== this.props.track.id) {
-			return streamTrack(this.props.track.id, this.waveform.optionsForSyncedStream());
-		}
-
-		if (this.props.playing) {
+		if (this.isPlaying()) {
 			return pauseTrack();
 		}
 
-		return playTrack();
+		return playTrack(this.props.track);
 	}
+
+
 
 	/**
 	 * Render the play button.

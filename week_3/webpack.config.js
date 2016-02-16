@@ -27,7 +27,7 @@ module.exports = {
 		extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', '.css'],
 		fallback: path.join(__dirname, 'node_modules'),
 		alias: {
-			env: '../env'
+			env: path.join(PATH, 'env'),
 		}
 	},
 

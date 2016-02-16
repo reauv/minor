@@ -11,7 +11,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from 'Containers/App';
 import Tracks from 'Containers/Tracks';
-import TrackDetail from 'Containers/TrackDetail';
+import TrackDetailContainer from 'Containers/TrackDetailContainer';
 
 // Set up Soundcloud
 Soundcloud.initialize({
@@ -25,7 +25,7 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<IndexRoute component={Tracks}/>
-				<Route path='/track/:id' component={TrackDetail} />
+				<Route path='/track/:id' component={TrackDetailContainer} />
 			</Route>
 		</Router>
 	</Provider>,
