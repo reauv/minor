@@ -24,4 +24,13 @@
 
 :global(body.ptr-loading) .refresh_loading {
 	display: block;
-};
+}
+
+.loading {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	color: #F50;
+}

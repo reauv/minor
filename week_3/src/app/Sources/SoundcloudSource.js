@@ -31,9 +31,11 @@ export function streamTrack(track, streamOptions) {
 
 export function fetchFeed() {
 	soundcloudActions.fetchingTracks();
-
 	Soundcloud.get('/me/activities/tracks/affiliated')
-		.then(response => soundcloudActions.fetchedTracks(response.collection))
+		.then(response => {
+			setTimeout(() => {
+				soundcloudActions.fetchedTracks(response.collection)
+			}, 2000)})
 		.catch(error => console.error(error));
 }
 
