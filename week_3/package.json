@@ -46,6 +46,7 @@
     "lodash": "^4.4.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-pull-to-refresh": "^1.0.3",
     "react-redux": "^4.2.1",
     "react-router": "^2.0.0-rc6",
     "react-router-redux": "^3.0.0",
@@ -53,6 +54,7 @@
     "redux-act": "^0.3.0",
     "redux-thunk": "^1.0.3",
     "soundcloud": "^3.1.0",
-    "waveform.js": "git://github.com/reauv/waveform.js#master"
+    "waveform.js": "git://github.com/reauv/waveform.js#master",
+    "whatwg-fetch": "^0.11.0"
   }
 }
