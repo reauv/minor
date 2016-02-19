@@ -1,14 +1,16 @@
 import React from 'react';
-import Track from 'Components/Track/Track';
+import TrackCompact from 'Components/TrackCompact/TrackCompact';
 
-const Feed = ({ collection, playing, currentTrack }) =>
+const Feed = (props) =>
 	<div>
-		{collection.map(item =>
-			<Track
-				playing={playing}
+		{props.tracks.map((item, i) =>
+			<TrackCompact
+				key={i}
+				{...props}
 				track={item.origin}
-				key={item.origin.id}
-				currentTrack={currentTrack}
+				samples={props.samples.find(samples => {
+					return samples.trackId === item.origin.id;
+				})}
 			/>
 		)}
 	</div>;

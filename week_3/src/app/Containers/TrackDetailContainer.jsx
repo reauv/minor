@@ -14,6 +14,7 @@ class TrackDetailContainer extends Component {
 		playing: PropTypes.bool,
 		track: PropTypes.object,
 		params: PropTypes.object,
+		samples: PropTypes.object,
 		currentTrack: PropTypes.object,
 		fetchingTrack: PropTypes.string,
 	};
@@ -45,8 +46,12 @@ class TrackDetailContainer extends Component {
 	}
 }
 
-function select(state) {
+function select(state, props) {
+	const id = props.params.id;
+	const samples = state.soundcloud.samples.find(i => i.trackId === parseInt(id));
+
 	return {
+		samples: samples,
 		track: state.soundcloud.track,
 		playing: state.player.playing,
 		position: state.player.position,

@@ -1,19 +1,18 @@
 .container {
-
-}
-
-.header {
 	margin-bottom: 2em;
 	display: flex;
+	padding: 0 0 1em 0;
+	border-bottom: 1px solid #EEE;
 }
 
 .cover {
-	flex: 1 1 300px;
+	flex: 0 0 100px;
 	margin-right: 1em;
 }
 
 .user {
-	font-size: 1em;
+	font-size: 0.75em;
+	text-tranform: uppercase;
 	margin-bottom: 0.4em;
 }
 
@@ -22,14 +21,14 @@
 }
 
 .title {
-	font-size: 1.75em;
+	font-size: 1.15em;
 	font-weight: 500;
 	line-height: 1.4;
 }
 
 .play {
-	flex: 0 0 3rem;
-	height: 3rem;
+	flex: 0 0 2em;
+	height: 2em;
 	background: #F50;
 	border-radius: 50%;
 	display: flex;
@@ -38,7 +37,7 @@
 	color: white;
 	cursor: pointer;
 	margin-right: 1em;
-	font-size: 1.5em;
+	font-size: 0.9em;
 }
 
 .play i {
@@ -50,25 +49,8 @@
 	position: relative;
 	flex: 100%;
 	overflow: hidden;
-	margin-top: 2em;
+	margin-top: 0.5em;
 	width: 75vw;
 	height: 50px;
 	overflow: hidden;
-	text-align: center;
-}
-
-.wrapper {
-	display: flex;
-}
-
-.main {
-	flex: 0 0 70%;
-}
-
-.aside {
-	flex: 0 0 30%;
-}
-
-.description {
-	line-height: 1.45;
 }

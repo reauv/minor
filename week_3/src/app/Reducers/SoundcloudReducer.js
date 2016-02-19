@@ -6,6 +6,7 @@ import { streamTrack } from 'Sources/SoundcloudSource';
 const initialState = {
 	key: env.SOUNDCLOUD_ID,
 	tracks: [],
+	samples: [],
 	track: null,
 	fetchingTrack: 'idle',
 	streamingTrack: 'idle',
@@ -54,6 +55,22 @@ export default createReducer({
 				fetchingTrack: 'failed',
 		};
 	},
+
+	/**
+	 * Fetch samples
+	 */
+	[actions.fetchedSamples]: (state, payload) => {
+		const {trackId, samples} = payload;
+
+		return {...state,
+			samples: [...state.samples,
+				{
+					trackId: trackId,
+					data: samples,
+				}
+			]
+		};
+	}
 
 
 

@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import style from './track.css';
 import { Link } from 'react-router';
+import style from './track_compact.css';
 import React, { Component, PropTypes } from 'react';
 import Waveform from 'Components/Waveform/Waveform';
 import { streamTrack } from 'Sources/SoundcloudSource';
 import { playTrack, pauseTrack } from 'Actions/PlayerActions';
 
-class Track extends Component {
+class TrackCompact extends Component {
 
 	/**
 	 * Validates the props used by the component.
@@ -21,16 +21,6 @@ class Track extends Component {
 		playing: PropTypes.bool.isRequired,
 		track: PropTypes.object.isRequired,
 	};
-
-	/**
-	 * Get the cover image source.
-	 *
-	 * @return {String}
-	 */
-	getImage() {
-		const src = this.props.track.artwork_url || this.props.track.user.avatar_url;
-		return src.replace('large', 't300x300');
-	}
 
 	/**
 	 * Check if this track is the current played track.
@@ -87,42 +77,30 @@ class Track extends Component {
 
 		return (
 			<div className={style.container}>
-				<div className={style.header}>
-					<div className={style.cover}>
-						<img src={this.getImage()} />
-					</div>
-
-					<div>
-						{/* Meta */}
-						<div className={style.meta}>
-							{this.renderPlayButton()}
-							<div>
-								<h5 className={style.user}>{track.user.username}</h5>
-								<Link to={`/track/${track.id}`} className={style.title}>
-									{track.title}
-								</Link>
-							</div>
-						</div>
-
-						{/* Waveform */}
-						<div className={style.waveform}>
-							<Waveform {...this.props} />
-						</div>
-					</div>
+				<div className={style.cover}>
+					<img src={track.artwork_url || track.user.avatar_url} />
 				</div>
 
-				<div className={style.wrapper}>
-					<div className={style.main}>
-						<p className={style.description}>{track.description}</p>
+				<div className={style.main}>
+					{/* Meta */}
+					<div className={style.meta}>
+						{this.renderPlayButton()}
+						<div className={style.header}>
+							<h5 className={style.user}>{track.user.username}</h5>
+							<Link to={`/track/${track.id}`} className={style.title}>
+								{track.title}
+							</Link>
+						</div>
 					</div>
-					<aside className={style.aside}>
 
-					</aside>
+					{/* Waveform */}
+					<div className={style.waveform}>
+						<Waveform {...this.props} />
+					</div>
 				</div>
-
 			</div>
 		);
 	}
 }
 
-export default Track;
+export default TrackCompact;

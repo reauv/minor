@@ -29,10 +29,17 @@ export function streamTrack(track, streamOptions) {
 		.then(player => playerActions.streamedTrack(player));
 }
 
-export function fetchActivities() {
+export function fetchFeed() {
 	soundcloudActions.fetchingTracks();
 
 	Soundcloud.get('/me/activities/tracks/affiliated')
 		.then(response => soundcloudActions.fetchedTracks(response.collection))
 		.catch(error => console.error(error));
+}
+
+export function fetchSamples(track) {
+	const url = track.waveform_url.replace('png', 'json');
+	fetch(url)
+		.then(response => response.json())
+		.then(data => soundcloudActions.fetchedSamples({ trackId: track.id, samples: data.samples }));
 }

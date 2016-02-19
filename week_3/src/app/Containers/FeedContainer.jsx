@@ -1,20 +1,11 @@
 import Feed from 'Components/Feed';
+import Auth from 'Components/Auth';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
-import { fetchTracks, streamTrack } from 'Sources/SoundcloudSource';
+import { fetchFeed } from 'Sources/SoundcloudSource';
 
-class Tracks extends Component {
-
-	/**
-	 * Validates the props used by the component.
-	 *
-	 * @type {Object}
-	 */
-	static propTypes = {
-		status: PropTypes.string,
-		tracks: PropTypes.array,
-	};
+class FeedContainer extends Component {
 
 	/**
 	 * Invoked once, both on the client and server, immediately
@@ -22,7 +13,9 @@ class Tracks extends Component {
 	 *
 	 * @return {void}
 	 */
-	componentWillMount() {}
+	componentWillMount() {
+		fetchFeed();
+	}
 
 	/**
 	 * Render the component.
@@ -32,13 +25,7 @@ class Tracks extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Tracks</h2>
-				<p>{this.props.status}</p>
-				<Feed
-					playing={this.props.playing}
-					collection={this.props.tracks}
-					currentTrack={this.props.currentTrack}
-				/>
+				<Feed {...this.props} />
 			</div>
 		);
 	}
@@ -46,11 +33,15 @@ class Tracks extends Component {
 
 function select(state) {
 	return {
-		tracks: state.soundcloud.tracks,
+		token: state.user.token,
 		playing: state.player.playing,
+		position: state.player.position,
+		duration: state.player.duration,
+		tracks: state.soundcloud.tracks,
+		samples: state.soundcloud.samples,
 		currentTrack: state.player.currentTrack,
 		status: state.soundcloud.fetchingTracks,
 	}
 }
 
-export default connect(select)(Tracks);
+export default connect(select)(FeedContainer);
