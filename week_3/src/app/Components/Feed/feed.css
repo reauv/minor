@@ -1,0 +1,27 @@
+.refresh {
+
+}
+
+.refresh :global(.ptr-element) {
+	text-align: center;
+}
+
+.refresh_info,
+.refresh_loading {
+	font-size: 1em;
+	padding: 1em;
+	display: none;
+	margin-bottom: 1em;
+}
+
+:global(body.ptr-refresh) .refresh_info {
+	display: block;
+}
+
+:global(body.ptr-loading) .refresh_info {
+	display: none;
+}
+
+:global(body.ptr-loading) .refresh_loading {
+	display: block;
+};

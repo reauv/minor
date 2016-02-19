@@ -1,6 +1,6 @@
-import Feed from 'Components/Feed';
 import Auth from 'Components/Auth';
 import { connect } from 'react-redux';
+import Feed from 'Components/Feed/Feed';
 import { routeActions } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
 import { fetchFeed } from 'Sources/SoundcloudSource';
@@ -23,11 +23,7 @@ class FeedContainer extends Component {
 	 * @return {ReactElement}
 	 */
 	render() {
-		return (
-			<div>
-				<Feed {...this.props} />
-			</div>
-		);
+		return <Feed {...this.props} />
 	}
 }
 
