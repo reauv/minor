@@ -51,8 +51,6 @@
     "redux-act": "^0.3.0",
     "redux-thunk": "^1.0.3",
     "soundcloud": "^3.1.0",
-    "waveform.js": "^1.0.0",
-    "waveformjs": "^1.0.1",
-    "wavesurfer.js": "^1.0.52"
+    "waveform.js": "git://github.com/reauv/waveform.js#master"
   }
 }
