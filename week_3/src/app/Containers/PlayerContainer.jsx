@@ -32,6 +32,7 @@ class PlayerContainer extends Component {
 function select(state) {
 	return {
 		clientId: state.soundcloud.key,
+		tracks: state.soundcloud.tracks,
 		...state.player,
 	}
 }

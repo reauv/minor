@@ -9,3 +9,5 @@ export const timeChanged = createAction('Time position of track is changed.');
 
 export const playTrack = createAction('Play a track');
 export const pauseTrack = createAction('Pause a track');
+export const nextTrack = createAction('Skip to next track');
+export const previousTrack = createAction('Skip to previous track');

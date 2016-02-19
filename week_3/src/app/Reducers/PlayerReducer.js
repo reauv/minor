@@ -17,6 +17,20 @@ export default createReducer({
 		};
 	},
 
+	[actions.nextTrack]: (state, track) => {
+		return {...state,
+			currentTrack: track,
+			playing: true,
+		};
+	},
+
+	[actions.previousTrack]: (state, track) => {
+		return {...state,
+			currentTrack: track,
+			playing: true,
+		};
+	},
+
 	[actions.pauseTrack]: (state) => {
 		return {...state,
 			playing: false,

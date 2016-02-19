@@ -1,12 +1,4 @@
-.container {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	height: 3em;
-	border-bottom: 1px solid #EEE;
-	box-shadow: 0px -1px 10px rgba(0,0,0,0.1);
-	background: #FFF;
-}
+.container {}
 
 .wrapper {
 	display: flex;
@@ -15,13 +7,29 @@
 	padding: 0 2em;
 }
 
-.play {
+.play,
+.next,
+.previous {
+	outline: 0;
+	border: 0;
+	background: none;
 	font-size: 1em;
 	color: #333;
+	cursor: pointer;
 }
 
-.play:hover {
+.play:hover
+.play:focus,
+.next:hover,
+.next:focus,
+.previous:hover,
+.previous:focus {
 	color: #000;
+}
+
+.next[disabled],
+.previous[disabled] {
+	opacity: 0.5;
 }
 
 .track {
@@ -39,10 +47,13 @@
 
 .cover {
 	margin-right: 0.5em;
+	display: flex;
+	align-items: center;
 }
 
 .cover img {
-	height: 100%;
+	height: 30px;
+	border-radius: 50%;
 }
 
 .artist {

@@ -55,12 +55,46 @@ class Player extends Component {
 	}
 
 	/**
+	 * Get the index of the current track in the tracklist.
+	 *
+	 * @return {Integer}
+	 */
+	getCurrentTrackIndex() {
+		const currentTrackId = this.props.currentTrack.id;
+		return this.props.tracks.findIndex((e) => {
+			return e.origin.id === currentTrackId
+		});
+	}
+
+	/**
 	 * Invoked when the play button is clicked.
 	 *
 	 * @return {void}
 	 */
 	onPlayClick() {
 		this.props.playing ? actions.pauseTrack() : actions.playTrack(this.props.currentTrack);
+	}
+
+	/**
+	 * Invoked when the next button is clicked.
+	 *
+	 * @return {void}
+	 */
+	onNextClick() {
+		const nextTrack = this.props.tracks[this.getCurrentTrackIndex() + 1].origin;
+
+		actions.nextTrack(nextTrack);
+	}
+
+	/**
+	 * Invoked when the next button is clicked.
+	 *
+	 * @return {void}
+	 */
+	onPreviousClick() {
+		const previousTrack = this.props.tracks[this.getCurrentTrackIndex() - 1].origin;
+
+		actions.previousTrack(previousTrack);
 	}
 
 	/**
@@ -72,9 +106,39 @@ class Player extends Component {
 		const icon = this.props.playing ? 'fa fa-pause' : 'fa fa-play';
 
 		return (
-			<div className={style.play} onClick={this.onPlayClick.bind(this)}>
+			<button className={style.play} onClick={this.onPlayClick.bind(this)}>
 				<i className={icon} />
-			</div>
+			</button>
+		);
+	}
+
+	/**
+	 * Render the previous button.
+	 *
+	 * @return {ReactElement}
+	 */
+	renderPreviousButton() {
+		const disabled = (this.getCurrentTrackIndex() < 1);
+
+		return (
+			<button className={style.previous} disabled={disabled} onClick={this.onPreviousClick.bind(this)}>
+				<i className='fa fa-step-backward' />
+			</button>
+		);
+	}
+
+	/**
+	 * Render the next button.
+	 *
+	 * @return {ReactElement}
+	 */
+	renderNextButton() {
+		const disabled = (this.getCurrentTrackIndex() >= this.props.tracks.length - 1);
+
+		return (
+			<button className={style.next} disabled={disabled} onClick={this.onNextClick.bind(this)}>
+				<i className='fa fa-step-forward' />
+			</button>
 		);
 	}
 
@@ -105,7 +169,9 @@ class Player extends Component {
 						</div>
 					</div>
 
+					{this.renderPreviousButton()}
 					{this.renderPlayButton()}
+					{this.renderNextButton()}
 				</div>
 
 			</div>

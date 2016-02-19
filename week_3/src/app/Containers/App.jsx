@@ -3,7 +3,6 @@ import 'Stylesheets/shared';
 
 import React from 'react';
 import Header from 'Components/Header/Header';
-import PlayerContainer from 'Containers/PlayerContainer';
 
 const App = ({ children }) =>
 	<div>
@@ -11,7 +10,6 @@ const App = ({ children }) =>
 		<div className="wrapper">
 			{children}
 		</div>
-		<PlayerContainer />
 	</div>;
 
 export default App;
