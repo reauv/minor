@@ -4,6 +4,7 @@
   "description": "Exercise 6 of the minor web development, thanks to Dan Abramov for the react hot boilerplate (https://github.com/gaearon/react-hot-boilerplate)",
   "scripts": {
     "start": "node server.js",
+    "compile": "webpack --config webpack.production.config.js",
     "lint": "eslint src"
   },
   "keywords": [
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "es6-promise": "^3.0.2",
+    "extract-text-webpack-plugin": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.4.0",
     "react": "^0.14.0",
