@@ -23,6 +23,7 @@ class Player extends Component {
 	 * @return {void}
 	 */
 	componentDidMount() {
+		this.refs.audio.addEventListener('ended', this.onTrackEnds.bind(this));
 		this.refs.audio.addEventListener('timeupdate', e => actions.timeChanged(e.target.currentTime));
 		this.refs.audio.addEventListener('durationchange', e => actions.durationChanged(e.target.duration));
 	}
@@ -107,6 +108,21 @@ class Player extends Component {
 	}
 
 	/**
+	 * Invoked when the track ends.
+	 *
+	 * @return {void}
+	 */
+	onTrackEnds() {
+		const nextTrack = this.props.tracks[this.getCurrentTrackIndex() + 1];
+
+		if (!nextTrack) {
+			return actions.pauseTrack();
+		}
+
+		actions.nextTrack(nextTrack.origin);
+	}
+
+	/**
 	 * Format the time in a human readable format.
 	 *
 	 * @param  {Integer} time - HTML5 audio time format.
@@ -175,7 +191,7 @@ class Player extends Component {
 
 		return (
 			<div className={style.container}>
-				<audio ref="audio" src={this.getSource()} autoPlay={this.props.playing}/>
+				<audio ref="audio" src={this.getSource()} />
 
 				<div className={style.wrapper}>
 					<div className={style.track}>
