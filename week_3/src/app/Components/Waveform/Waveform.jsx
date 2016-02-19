@@ -53,12 +53,36 @@ class Waveform extends Component {
 	}
 
 	/**
+	 * Invoked when a component is receiving new props.
+	 * This method is not called for the initial render.
+	 *
+	 * @param  {Object} nextProps
+	 * @return {void}
+	 */
+	componentWillReceiveProps(nextProps) {
+		const positionChanged = nextProps.position !== this.props.position;
+		const durationChanged = nextProps.duration !== this.props.duration;
+
+		if ((positionChanged || durationChanged) && this.isCurrentTrack()) {
+			this.redrawWaveform();
+		}
+
+		if (nextProps.currentTrack !== this.props.track) {
+			this.redrawWaveform();
+		}
+
+		if (!this.waveform && nextProps.samples) {
+			this.drawWaveform(nextProps.samples.data);
+		}
+	}
+
+	/**
 	 * Check if this track is the current played track.
 	 *
 	 * @return {Boolean}
 	 */
 	isCurrentTrack() {
-		return this.props.currentTrack.id === this.props.track.id;
+		return this.props.currentTrack && this.props.currentTrack.id === this.props.track.id;
 	}
 
 	/**
@@ -82,37 +106,19 @@ class Waveform extends Component {
 			container: this.refs.waveform,
 			outerColor: '#FFF',
 			innerColor: (x) => {
+				if (!this.isCurrentTrack()) {
+					return '#EEE';
+				}
+
 				if (x < this.props.position / this.props.duration) {
 					return '#F50';
 				}
-				if (x === this.props.position / this.props.duration) {
-					return '#AD3A00';
-				}
+
 				return '#BBB';
 			},
 		});
 
 		this.redrawWaveform = _.throttle(this.waveform.redraw, 100);
-	}
-
-	/**
-	 * Invoked when a component is receiving new props.
-	 * This method is not called for the initial render.
-	 *
-	 * @param  {Object} nextProps
-	 * @return {void}
-	 */
-	componentWillReceiveProps(nextProps) {
-		const positionChanged = nextProps.position !== this.props.position;
-		const durationChanged = nextProps.duration !== this.props.duration;
-
-		if ((positionChanged || durationChanged) && this.isCurrentTrack()) {
-			this.redrawWaveform();
-		}
-
-		if (!this.waveform && nextProps.samples) {
-			this.drawWaveform(nextProps.samples.data);
-		}
 	}
 
 	/**

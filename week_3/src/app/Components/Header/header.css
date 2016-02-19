@@ -1,7 +1,14 @@
 .container {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #FFF;
 	height: 50px;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 0 1em;
 	border-bottom: 1px solid #EEE;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -9,6 +16,20 @@
 }
 
 .logo {
+	width: 60px;
 	height: 25px;
-	width: auto;
+}
+
+.player {
+	display: none;
+}
+
+.spacer {
+	width: 60px;
+}
+
+@media (min-width: 45em) {
+	.player {
+		display: flex;
+	}
 }

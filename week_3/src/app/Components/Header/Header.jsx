@@ -4,11 +4,14 @@ import { Link } from 'react-router';
 import PlayerContainer from 'Containers/PlayerContainer';
 
 const Header = () =>
-	<Link to='/' className={styles.container}>
-		<img src='/logo.png' className={styles.logo} />
+	<div className={styles.container}>
+		<Link to='/'>
+			<img src='/logo.png' className={styles.logo} />
+		</Link>
 		<div className={styles.player}>
 			<PlayerContainer />
 		</div>
-	</Link>
+		<div className={styles.spacer} />
+	</div>
 
 export default Header;

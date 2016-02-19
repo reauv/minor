@@ -6,7 +6,7 @@
 }
 
 .cover {
-	flex: 0 0 100px;
+	flex: 0 0 50px;
 	margin-right: 1em;
 }
 
@@ -46,6 +46,7 @@
 }
 
 .waveform {
+	display: none;
 	position: relative;
 	flex: 100%;
 	overflow: hidden;
@@ -53,4 +54,14 @@
 	width: 75vw;
 	height: 50px;
 	overflow: hidden;
+}
+
+@media (min-width: 45em) {
+	.cover {
+		flex-basis: 50px;
+	}
+
+	.waveform {
+		display: block;
+	}
 }

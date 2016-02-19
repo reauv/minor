@@ -66,6 +66,15 @@ class Player extends Component {
 		});
 	}
 
+	getTrackTitle() {
+		const title = this.props.currentTrack.title;
+		if (title.length > 40) {
+			return title.substr(0,40) + '...';
+		}
+
+		return title;
+	}
+
 	/**
 	 * Invoked when the play button is clicked.
 	 *
@@ -95,6 +104,20 @@ class Player extends Component {
 		const previousTrack = this.props.tracks[this.getCurrentTrackIndex() - 1].origin;
 
 		actions.previousTrack(previousTrack);
+	}
+
+	/**
+	 * Format the time in a human readable format.
+	 *
+	 * @param  {Integer} time - HTML5 audio time format.
+	 * @return {String}
+	 */
+	formatTime(time) {
+		let minutes = Math.floor(time / 60);
+		let seconds = Math.floor(time % 60);
+		minutes = (minutes >= 10) ? minutes : '0' + minutes;
+		seconds = (seconds >= 10) ? seconds : '0' + seconds;
+		return `${minutes}:${seconds}`;
 	}
 
 	/**
@@ -164,8 +187,13 @@ class Player extends Component {
 								{track.user.username}
 							</div>
 							<div className={style.track_title}>
-								{track.title}
+								{this.getTrackTitle()}
 							</div>
+						</div>
+						<div className={style.time}>
+							{this.formatTime(this.props.position)}
+							/
+							{this.formatTime(this.props.duration)}
 						</div>
 					</div>
 
