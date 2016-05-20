@@ -18,7 +18,7 @@ import TrackDetailContainer from 'Containers/TrackDetailContainer';
 // Set up Soundcloud
 Soundcloud.initialize({
 	client_id: env.SOUNDCLOUD_ID,
-	redirect_uri: 'http://0.0.0.0:8080/callback.html',
+	redirect_uri: env.SOUNDCLOUD_REDIRECT_URI,
 	oauth_token: store.getState().user.token,
 });
 
