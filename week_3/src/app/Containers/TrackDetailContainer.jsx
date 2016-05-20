@@ -31,6 +31,19 @@ class TrackDetailContainer extends Component {
 	}
 
 	/**
+	 * Invoked when a component is receiving new props.
+	 * This method is not called for the initial render.
+	 *
+	 * @param  {Object} nextProps
+	 * @return {void}
+	 */
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.params.id !== this.props.params.id) {
+			fetchTrack(nextProps.params.id);
+		}
+	}
+
+	/**
 	 * Render the component.
 	 *
 	 * @return {ReactElement}
