@@ -7,10 +7,10 @@ new WebpackDevServer(webpack(config), {
 	publicPath: '/static/',
 	historyApiFallback: true,
 	contentBase: './src/public',
-}).listen(8080, '0.0.0.0', function (err, result) {
+}).listen(8200, '0.0.0.0', function (err, result) {
 	if (err) {
 		console.log(err);
 	}
 
-	console.log('Listening at 0.0.0.0:8080');
+	console.log('Listening at 0.0.0.0:8200');
 });
